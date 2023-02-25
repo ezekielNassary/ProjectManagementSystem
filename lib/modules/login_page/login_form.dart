@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:project_management_system/routes/app_routes.dart';
 import 'package:project_management_system/themes/color_scheme.dart';
 
+import '../../utils/constants.dart';
 import '../components/default_button.dart';
 
 class SignForm extends StatefulWidget {
@@ -54,7 +57,7 @@ class _SignFormState extends State<SignForm> {
               Spacer(),
               GestureDetector(
                 onTap: () => null,
-                child: Text(
+                child: const Text(
                   "Forgot Password",
                   style: TextStyle(decoration: TextDecoration.underline),
                 ),
@@ -65,6 +68,7 @@ class _SignFormState extends State<SignForm> {
           DefaultButton(
             text: "Continue",
             press: () {
+              Get.offNamed(AppRoutes.homepage);
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
               }
@@ -92,11 +96,12 @@ class _SignFormState extends State<SignForm> {
         }
         return null;
       },
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         labelText: "Password",
         hintText: "Enter your password",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: Icon(Icons.lock),
+        border: outlineInputBorder(),
       ),
     );
   }
@@ -113,13 +118,12 @@ class _SignFormState extends State<SignForm> {
           return "please enter your email";
         }
       },
-      decoration: const InputDecoration(
+      decoration: InputDecoration(
         labelText: "Email",
         hintText: "Enter your email",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: Icon(Icons.email),
+        border: outlineInputBorder(),
       ),
     );
   }

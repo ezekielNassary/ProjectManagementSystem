@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'themes.dart';
+
 class ThemeColor {
   static const Color white = Color(0xffffffff);
   static const Color secondaryGrey = Color(0xffF1F3F4);
@@ -7,7 +9,7 @@ class ThemeColor {
   static const Color primaryBlack = Color(0xff141915);
   static const Color secondaryDarkGrey = Color(0xff606260);
   static const Color primaryDarkGrey = Color(0xff414141);
-  static const Color primaryBlue = Color.fromARGB(255, 97, 6, 244);
+  static const Color primaryBlue = Color.fromARGB(255, 6, 101, 244);
   static const Color primaryGreen = Color(0xff5EBE4E);
   static const Color primaryGrey = Colors.grey;
   static const Color secondaryBlack = Color(0xff2B2F2C);
@@ -20,6 +22,19 @@ class ThemeColor {
 
   ThemeData get themeData {
     // ignore: prefer_const_constructors
+    scaffoldBackgroundColor:
+    Colors.grey[100];
+    fontFamily:
+    "Muli";
+    appBarTheme:
+    appBarTheme();
+    textTheme:
+    textTheme();
+    inputDecorationTheme:
+    inputDecorationTheme();
+    visualDensity:
+    VisualDensity.adaptivePlatformDensity;
+
     ColorScheme colorSchemeMovieApp = ColorScheme(
       // primary green
       primary: const Color(0xff2E2739),

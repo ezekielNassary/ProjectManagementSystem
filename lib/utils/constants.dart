@@ -1,3 +1,21 @@
-const apiBaseUrl = 'https://api.themoviedb.org/3';
-const apiKey = '3f834ef77eaddfcaad9e5955dc3a6feb';
-const imageBaseUrl = 'https://image.tmdb.org/t/p/original';
+import 'package:flutter/material.dart';
+
+import '../themes/color_scheme.dart';
+
+const apiBaseUrl = 'https://easydigitaltz.000webhostapp.com/pms';
+const apiKey = '';
+const imageBaseUrl = '';
+const defaultDuration = Duration(milliseconds: 250);
+
+OutlineInputBorder outlineInputBorder() {
+  return OutlineInputBorder(
+    borderRadius: BorderRadius.circular(15),
+    borderSide: const BorderSide(color: ThemeColor.primaryGrey),
+  );
+}
+
+TextStyle headingstyle = const TextStyle(
+    fontSize: 16,
+    color: ThemeColor.primaryBlack,
+    letterSpacing: 1,
+    fontFamily: 'Muli');
