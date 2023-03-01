@@ -1,25 +1,53 @@
+import 'dart:convert';
 import 'package:dio/dio.dart';
-
 import '../utils/constants.dart';
+import 'package:http/http.dart' as http;
 
 class ProjectsApi {
-  final dio = Dio(); //Dio(BaseOptions(baseUrl: apiBaseUrl));
+  final dio = Dio();
+  var internetError = [
+    {'id': 'x'}
+  ];
+
   Future<dynamic> getAllProjects() async {
-    final response = await dio.get(apiBaseUrl);
-    if (response.statusCode == 200) {
-      print(response.data);
-      return response.data;
-    } else {
-      return null;
+    var url = Uri.parse(apiBaseUrl);
+    try {
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return jsonEncode(internetError);
     }
   }
 
-  Future<dynamic> getMovieDetails({required int movieId}) async {
-    final response = await dio.get('/movie/$movieId?api_key=$apiKey');
-    if (response.statusCode == 200) {
-      return response.data;
-    } else {
-      return null;
+  Future<dynamic> getOneProject(String id) async {
+    var url = Uri.parse('$apiBaseUrl?id=$id');
+    try {
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return jsonEncode(internetError);
+    }
+  }
+
+  Future<dynamic> getAllMembers() async {
+    var url = Uri.parse('${apiBaseUrl}team.php');
+    try {
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return jsonEncode(internetError);
     }
   }
 }

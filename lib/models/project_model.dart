@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
 
 class Projects {
   final int? id;
@@ -11,6 +10,7 @@ class Projects {
   final bool? isCompleted;
   final String supervisor;
   final String location;
+  final String supervisorContact;
   Projects({
     this.id,
     required this.title,
@@ -20,6 +20,7 @@ class Projects {
     required this.tasks,
     required this.supervisor,
     required this.location,
+    required this.supervisorContact,
     this.projectMaterial,
     this.images,
     this.isCompleted,
@@ -27,7 +28,8 @@ class Projects {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'tile': title,
+      'id': id,
+      'title': title,
       'projectId': projectId,
       'description': description,
       'images': images,
@@ -36,29 +38,26 @@ class Projects {
       'projectMaterial': projectMaterial,
       'isCompleted': isCompleted,
       'supervisor': supervisor,
+      'supervisorContact': supervisorContact,
       'location': location,
     };
   }
 
   factory Projects.fromMap(Map<String, dynamic> json) {
     return Projects(
-      title: json['title'],
-      projectId: json['projectId'],
-      description: json['description'],
-      progress: json['progress'],
-      tasks: json['tasks'],
-      supervisor: json['supervisor'],
-      location: json['location '],
-      images: json['images'],
-      projectMaterial: json['projectMaterial'],
-      isCompleted: json['isCompleted'],
-    );
+        id: json['id'] as int,
+        title: json['title'] as String,
+        projectId: json['projectId'] as String,
+        description: json['description'] as String,
+        images: json['images'] as List<String>,
+        tasks: json['tasks'] as List<String>,
+        progress: json['progress'] as double,
+        projectMaterial: json['projectMaterial'] as List<String>,
+        isCompleted: json['isCompleted'] as bool,
+        supervisor: json['supervisor'] as String,
+        location: json['location '] as String,
+        supervisorContact: json['supervisorContact'] as String);
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory Projects.fromJson(String source) =>
-      Projects.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
 List<Projects> demoProjects = [
@@ -78,7 +77,8 @@ List<Projects> demoProjects = [
       isCompleted: false,
       tasks: ["Build blocks", "Trench cleaning"],
       projectMaterial: [],
-      supervisor: 'Ezekiel Nassary'),
+      supervisor: 'Ezekiel Nassary',
+      supervisorContact: '0788776699'),
   Projects(
       id: 2,
       projectId: "23HHSDSKKDS-DSDDSD",
@@ -93,7 +93,8 @@ List<Projects> demoProjects = [
       isCompleted: false,
       tasks: ["Build HOUSE", "Trench cleaning"],
       projectMaterial: [],
-      supervisor: 'Daniel N'),
+      supervisor: 'Daniel N',
+      supervisorContact: '0788776699'),
   Projects(
       id: 3,
       projectId: "734DJFJDMMFFMMDMF",
@@ -111,7 +112,8 @@ List<Projects> demoProjects = [
         "Trench cleaning"
       ],
       projectMaterial: ["Axe", "Hoe", "Panga"],
-      supervisor: 'Daniel Nassary'),
+      supervisor: 'Daniel Nassary',
+      supervisorContact: '0788776699'),
 ];
 
 const String description =

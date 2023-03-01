@@ -13,7 +13,7 @@ class ProjectDescription extends StatelessWidget {
     this.pressOnSeeMore,
   }) : super(key: key);
 
-  final Projects project;
+  final List<dynamic> project;
   final GestureTapCallback? pressOnSeeMore;
 
   @override
@@ -33,7 +33,7 @@ class ProjectDescription extends StatelessWidget {
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
                 Text(
-                  project.title,
+                  project[0]['title'],
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
               ],
@@ -45,7 +45,7 @@ class ProjectDescription extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              project.isCompleted!
+              project[0]['isCompleted']!
                   ? Text(
                       "Completed",
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(
@@ -80,7 +80,7 @@ class ProjectDescription extends StatelessWidget {
                   padding: const EdgeInsets.all(15),
                   width: 100,
                   decoration: BoxDecoration(
-                    color: project.isCompleted!
+                    color: project[0]['isCompleted']!
                         ? Color.fromARGB(255, 98, 190, 7)
                         : Color.fromARGB(255, 64, 92, 176),
                     borderRadius: BorderRadius.only(
@@ -89,8 +89,11 @@ class ProjectDescription extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    '${project.progress.toStringAsFixed(1)} %',
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    '${project[0]['progress'].toStringAsFixed(1)} %',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge!
+                        .copyWith(color: ThemeColor.white),
                   ),
                 ),
               ),
@@ -110,7 +113,7 @@ class ProjectDescription extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ...List.generate(
-                      project.tasks.length,
+                      project[0]['tasks'].length,
                       (index) => Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
@@ -123,7 +126,7 @@ class ProjectDescription extends StatelessWidget {
                               ),
                               Flexible(
                                 child: Text(
-                                  project.tasks[index],
+                                  project[0]['tasks'][index],
                                   style: Theme.of(context).textTheme.bodySmall,
                                 ),
                               ),
@@ -149,11 +152,9 @@ class ProjectDescription extends StatelessWidget {
               left: 20,
               right: 64,
             ),
-            child: Flexible(
-              child: Text(
-                project.description,
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
+            child: Text(
+              project[0]['description'],
+              style: Theme.of(context).textTheme.bodySmall,
             ),
           ),
           const SizedBox(
@@ -165,7 +166,7 @@ class ProjectDescription extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: project.projectMaterial!.isEmpty
+            child: project[0]['projectMaterial']!.isEmpty
                 ? Container(
                     height: 30,
                     alignment: Alignment.bottomLeft,
@@ -179,7 +180,7 @@ class ProjectDescription extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                         ...List.generate(
-                            project.projectMaterial!.length,
+                            project[0]['projectMaterial']!.length,
                             (index) => Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
@@ -193,7 +194,7 @@ class ProjectDescription extends StatelessWidget {
                                     ),
                                     Flexible(
                                       child: Text(
-                                        project.projectMaterial![index],
+                                        project[0]['projectMaterial']![index],
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodySmall,
@@ -210,7 +211,7 @@ class ProjectDescription extends StatelessWidget {
             height: 20,
           ),
           Text(
-            "Supervisor: ${project.supervisor}",
+            "Supervisor: ${project[0]['supervisor']}",
             style: Theme.of(context).textTheme.labelSmall,
           ),
           Padding(

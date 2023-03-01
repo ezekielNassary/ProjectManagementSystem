@@ -1,27 +1,32 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 
 import '../../apis/projects_api.dart';
-import '../../models/project_model.dart';
 
 class ManageProjectController extends GetxController {
   ProjectsApi projectsApi = ProjectsApi();
-  List<Projects> projects = [];
-  var length = 0.obs;
+  var projects = [].obs;
   var isLoading = true.obs;
+  var noInternet = false.obs;
   @override
   void onInit() {
     fetchProjects();
     super.onInit();
   }
 
-  void fetchProjects() async {
+  Future fetchProjects() async {
+    noInternet.value = false;
+    isLoading.value = true;
     var response = await projectsApi.getAllProjects();
     if (response != null) {
-      print(response['result']);
-      response['result'].forEach((data) {
-        projects.add(Projects.fromMap(data));
-      });
-      length.value = projects.length;
+      var jsonResponse = jsonDecode(response);
+      if (jsonResponse[0]['id'] == 'x') {
+        noInternet.value = true;
+      } else {
+        noInternet.value = false;
+        projects.value = jsonResponse;
+      }
       isLoading.value = false;
     }
   }

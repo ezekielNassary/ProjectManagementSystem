@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../themes/color_scheme.dart';
 
-const apiBaseUrl = 'https://easydigitaltz.000webhostapp.com/pms';
+const apiBaseUrl = 'https://easydigitaltz.000webhostapp.com/pms/';
+const sampleUrl = 'https://easydigitaltz.000webhostapp.com/pms/sample.php';
 const apiKey = '';
-const imageBaseUrl = '';
+const imageBaseUrl = 'https://easydigitaltz.000webhostapp.com/pms/images/';
 const defaultDuration = Duration(milliseconds: 250);
 
 OutlineInputBorder outlineInputBorder() {

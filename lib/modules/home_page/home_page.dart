@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
-import 'package:project_management_system/modules/manage_projects_page/manage_projects_controller.dart';
+import 'package:project_management_system/modules/all_projects/manage_projects_page.dart';
+import 'package:project_management_system/modules/settings/setting_page.dart';
 import 'package:project_management_system/themes/color_scheme.dart';
 import 'package:project_management_system/utils/constants.dart';
 
 import '../dashboard/dashboard_page.dart';
+import '../team_page/team_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -51,15 +53,11 @@ class _HomePageState extends State<HomePage> {
           onPageChanged: (index) {
             setState(() => currentIndex = index);
           },
-          children: <Widget>[
-            const DashboardPage(),
-            const ManageProjects(),
-            Container(
-              color: Colors.red,
-            ),
-            Container(
-              color: Colors.yellow,
-            ),
+          children: const <Widget>[
+            DashboardPage(),
+            ManageProjects(),
+            TeamPage(),
+            SettingPage(),
           ],
         ),
       ),
@@ -87,9 +85,9 @@ class _HomePageState extends State<HomePage> {
             textAlign: TextAlign.center,
           ),
           BottomNavyBarItem(
-            icon: const Icon(Icons.chat),
+            icon: const Icon(Icons.people_alt_outlined),
             title: const Text(
-              'Chat',
+              'Team',
             ),
             activeColor: Color.fromARGB(255, 156, 174, 246),
             textAlign: TextAlign.center,

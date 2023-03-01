@@ -9,7 +9,7 @@ class ProjectImages extends StatefulWidget {
     required this.project,
   }) : super(key: key);
 
-  final Projects project;
+  final List<dynamic> project;
 
   @override
   _ProjectImagesState createState() => _ProjectImagesState();
@@ -26,8 +26,9 @@ class _ProjectImagesState extends State<ProjectImages> {
           child: AspectRatio(
             aspectRatio: 1,
             child: Hero(
-              tag: widget.project.id.toString(),
-              child: Image.asset(widget.project.images![selectedImage]),
+              tag: widget.project[0]['id'].toString(),
+              child: Image.network(
+                  imageBaseUrl + widget.project[0]!['images'][selectedImage]),
             ),
           ),
         ),
@@ -35,7 +36,7 @@ class _ProjectImagesState extends State<ProjectImages> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ...List.generate(widget.project.images!.length,
+            ...List.generate(widget.project[0]['images'].length,
                 (index) => buildSmallProductPreview(index)),
           ],
         )
@@ -48,6 +49,7 @@ class _ProjectImagesState extends State<ProjectImages> {
       onTap: () {
         setState(() {
           selectedImage = index;
+          print(selectedImage);
         });
       },
       child: AnimatedContainer(
@@ -63,7 +65,8 @@ class _ProjectImagesState extends State<ProjectImages> {
               color: ThemeColor.primaryBlue
                   .withOpacity(selectedImage == index ? 1 : 0)),
         ),
-        child: Image.asset(widget.project.images![index]),
+        child:
+            Image.network(imageBaseUrl + widget.project[0]['images']![index]),
       ),
     );
   }

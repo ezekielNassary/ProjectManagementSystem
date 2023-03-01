@@ -4,27 +4,28 @@ import 'package:get/get.dart';
 
 import '../../apis/projects_api.dart';
 
-class DashboardController extends GetxController {
+class TeamController extends GetxController {
   ProjectsApi projectsApi = ProjectsApi();
-  var projects = [].obs;
+  var members = [].obs;
   var isLoading = true.obs;
   var noInternet = false.obs;
+
   @override
   void onInit() {
-    allProjects();
+    getAllMembers();
     super.onInit();
   }
 
-  Future allProjects() async {
-    isLoading.value = true;
+  Future getAllMembers() async {
     noInternet.value = false;
-    var response = await projectsApi.getAllProjects();
+    isLoading.value = true;
+    var response = await projectsApi.getAllMembers();
     if (response != null) {
       var jsonResponse = await jsonDecode(response);
       if (jsonResponse[0]['id'] == 'x') {
         noInternet.value = true;
       } else {
-        projects.value = jsonResponse;
+        members.value = jsonResponse;
         noInternet.value = false;
       }
 
