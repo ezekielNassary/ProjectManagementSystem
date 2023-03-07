@@ -13,6 +13,8 @@ import 'package:project_management_system/themes/color_scheme.dart';
 import 'package:project_management_system/utils/constants.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 
+import '../../routes/app_routes.dart';
+
 class TeamPage extends StatefulWidget {
   const TeamPage({super.key});
 
@@ -79,7 +81,13 @@ class _TeamPageState extends State<TeamPage> {
                                       trailing: IconBtnWithCounter(
                                           svgSrc:
                                               "assets/icons/Chat bubble Icon.svg",
-                                          press: () {},
+                                          press: () {
+                                            Get.toNamed(AppRoutes.chatpage,
+                                                arguments: [
+                                                  controller.members[index]
+                                                      ['name']
+                                                ]);
+                                          },
                                           numOfitem: 3,
                                           color: ThemeColor.primaryBlue),
                                     ),

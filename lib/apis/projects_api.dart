@@ -50,4 +50,18 @@ class ProjectsApi {
       return jsonEncode(internetError);
     }
   }
+
+  Future<dynamic> getChats() async {
+    var url = Uri.parse('${apiBaseUrl}sample.php');
+    try {
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return jsonEncode(internetError);
+    }
+  }
 }

@@ -6,6 +6,8 @@ import 'package:project_management_system/modules/home_page/home_page.dart';
 import 'package:project_management_system/modules/login_page/login_page.dart';
 import 'package:project_management_system/modules/splash_page/splash_page.dart';
 import '../modules/SiginUp/signup_bind.dart';
+import '../modules/chat/chat_bindings.dart';
+import '../modules/chat/chat_page.dart';
 import '../modules/home_page/home_binding.dart';
 import '../modules/login_page/login_binding.dart';
 import '../modules/all_projects/manage_pro_binding.dart';
@@ -52,5 +54,9 @@ class AppPages {
         name: AppRoutes.detailspage,
         page: () => const DetailsScreen(),
         binding: OneProjectBinding()),
+    GetPage(
+        name: AppRoutes.chatpage,
+        page: () => const ChatPage(),
+        binding: ChatBindings()),
   ];
 }

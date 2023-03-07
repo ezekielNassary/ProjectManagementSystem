@@ -9,4 +9,5 @@ class AppRoutes {
   static const dashboardpage = '/dashboarrd';
   static const teampage = '/teampage';
   static const detailspage = '/detailspage';
+  static const chatpage = '/chatpage';
 }
